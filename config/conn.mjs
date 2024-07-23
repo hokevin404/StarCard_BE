@@ -2,19 +2,18 @@
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 
+// Invoked to load .env variables to process.env object
 dotenv.config();
 
+// Initialize db to MongoDB URI
 const db = process.env.mongoURI;
 
+// Function to connect to database
 export async function connectDB() {
-    try {
-        mongoose.set('strictQuery', false);
-        await mongoose.connect(db);
-    
-        console.log('Mongo DB Connected...');
-    } catch (error) {
-        console.error(error.message);
+    mongoose.connect(db);
 
-        process.exit(1);
-    };
-}
+    const conn = mongoose.connection;
+    conn.on('error', (e) => console.log(e));
+    conn.once('open', () => console.log(`Connected to MongoDB!`));
+    conn.off('close', () => console.log(`Disconnected from MongoDB!`));
+};
