@@ -23,7 +23,7 @@ const userListing = new mongoose.Schema({
     description: {
         type: String,
         required: false,
-        maxLength: 250,
+        maxLength: 250, 
     }
  });
 

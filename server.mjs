@@ -1,16 +1,28 @@
+// Import Modules
 import { connectDB } from './config/conn.mjs';;
 import dotenv from 'dotenv';
 import express from 'express';
 
+// Invoked to load .env variables to process.env object
 dotenv.config();
 
 // Initialize app variable with express
 const app = express();
 
+// Initialize PORT to imported PORT number, otherwise 3001
+const PORT = process.env.PORT || 3001;
+
 // Connect to MongoDB
 connectDB();
 
-const PORT = process.env.PORT || 3001;
+app.use(express.json());
+
+app
+    .get('/', (req, res) => {
+        res.send(`Welcome to The World`);
+    })
+
+
 app.listen(PORT, () => {
     console.log(`Web Server listening on port: ${PORT}`);
 })
