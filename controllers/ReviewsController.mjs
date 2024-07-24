@@ -2,7 +2,7 @@ import Reviews from "../models/Reviews.mjs";
 
 const ReviewController = {
     // Method to get user review
-    getReview: async (req, res) => {
+    getReviews: async (req, res) => {
         const toUserID = req.params;
         try {
             const reviews = await Reviews.find({ toUserID });

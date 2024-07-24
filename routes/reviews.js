@@ -8,6 +8,6 @@ import express from 'express';
 const router = express.Router();
 
 // Route to get all reviews of a user
-router.get('/:userID', getReviews);
+router.get('/:userID', ReviewController.getReviews);
 
 export default router;
