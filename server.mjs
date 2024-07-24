@@ -1,5 +1,6 @@
 // Import Functions
 import userRoutes from './routes/users.js';
+import listingRoutes from './routes/listings.js';
 
 // Import Modules
 import { connectDB } from './config/conn.mjs';;
@@ -21,6 +22,8 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 // Mount user route
 app.use('/api/users', userRoutes);
+// Mount listing route
+app.use('/api/listings', listingRoutes);
 
 app
     .get('/', (req, res) => {
