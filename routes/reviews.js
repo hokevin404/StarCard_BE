@@ -7,4 +7,7 @@ import express from 'express';
 // Initialize router as express Router()
 const router = express.Router();
 
+// Route to get all reviews of a user
+router.get('/:userID', getReviews);
+
 export default router;
