@@ -11,5 +11,7 @@ const router = express.Router();
 router.post('/', UserController.createUser);
 // Route to UPDATE user
 router.put('/:id', UserController.updateUser);
+// Route to DELETE user
+router.delete('/:id', UserController.deleteUser);
 
 export default router;
