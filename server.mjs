@@ -1,6 +1,7 @@
 // Import Functions
 import userRoutes from './routes/users.js';
 import listingRoutes from './routes/listings.js';
+import reviewRoutes from './routes/reviews.js';
 
 // Import Modules
 import { connectDB } from './config/conn.mjs';;
@@ -24,6 +25,8 @@ app.use(express.json());
 app.use('/api/users', userRoutes);
 // Mount listing route
 app.use('/api/listings', listingRoutes);
+// Mount review route
+app.use('/api/reviews', reviewRoutes);
 
 app
     .get('/', (req, res) => {
