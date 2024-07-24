@@ -9,5 +9,7 @@ const router = express.Router();
 
 // Route to CREATE new user
 router.post('/users', UserController.createUser);
+// Route to UPDATE user
+router.update('/users', UserController.updateUser);
 
 export default router;
