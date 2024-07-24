@@ -1,5 +1,5 @@
 // Import models
-import Listings from "../models/Listings.mjs";
+import ListingController from "../controllers/ListingController.mjs";
 
 // Import modules
 import express from 'express';
@@ -8,6 +8,6 @@ import express from 'express';
 const router = express.Router();
 
 // Route to create new listing
-router.post('/', UserController.createUser);
+router.post('/', ListingController.createListing);
 
 export default router;
