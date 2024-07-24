@@ -1,5 +1,5 @@
 // Import Functions
-import UserController from './controllers/UserController.mjs';
+import userRoutes from './routes/users.js';
 
 // Import Modules
 import { connectDB } from './config/conn.mjs';;
@@ -19,7 +19,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
-app.use('/users', UserController.createUser)
+// Mount user route
+app.use('/api/users', userRoutes);
 
 app
     .get('/', (req, res) => {

@@ -1,11 +1,13 @@
 import User from '../models/Users.mjs';
+import { v4 as uuidv4 } from 'uuid';
 
 const UserController = {
     // Method to create a new user
     createUser: async (req, res) => {
         const {fname, lname, username, email} = req.body;
+        const id = uuidv4();
         try {
-            const newUser = await User.create({fname, lname, username, email});
+            const newUser = await User.create({id, fname, lname, username, email});
             res.status(201).json({newUser});
         } catch (error) {
             res.status(400).json({error: error.message});

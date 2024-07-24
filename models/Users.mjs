@@ -2,6 +2,10 @@ import mongoose, { Mongoose } from "mongoose";
 import isEmail from 'validator/lib/isEmail.js';
 
 const UserSchema = new mongoose.Schema({
+    userID: {
+        type: String,
+        required: true
+    },
     fname: {
         type: String,
         required: true,

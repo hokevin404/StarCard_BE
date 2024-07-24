@@ -8,8 +8,8 @@ import express from 'express';
 const router = express.Router();
 
 // Route to CREATE new user
-router.post('/users', UserController.createUser);
+router.post('/', UserController.createUser);
 // Route to UPDATE user
-router.update('/users', UserController.updateUser);
+router.put('/:id', UserController.updateUser);
 
 export default router;
