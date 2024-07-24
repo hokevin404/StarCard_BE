@@ -5,9 +5,9 @@ const UserController = {
     // Method to create a new user
     createUser: async (req, res) => {
         const {fname, lname, username, email} = req.body;
-        const id = uuidv4();
+        const userID = uuidv4();
         try {
-            const newUser = await User.create({id, fname, lname, username, email});
+            const newUser = await User.create({userID, fname, lname, username, email});
             res.status(201).json({newUser});
         } catch (error) {
             res.status(400).json({error: error.message});
