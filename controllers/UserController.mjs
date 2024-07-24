@@ -1,6 +1,7 @@
 import User from '../models/Users.mjs';
 
 const UserController = {
+    // Method to create a new user
     createUser: async (req, res) => {
         const {fname, lname, username, email} = req.body;
         try {
@@ -11,7 +12,18 @@ const UserController = {
         }
     },
 
+    // Method to update a user
+    updateUser: async (req, res) => {
+        const {id} = req.params;
+        const {fname, lname, email} = req.body;
 
+        try {
+            const updatedUser = await User.findByIdAndUpdate(id, {fname, lname, email});
+            res.json(updatedUser);
+        } catch (error) {
+            res.status(400).json({error: error.message})
+        }
+    }
 }
 
 export default UserController;
