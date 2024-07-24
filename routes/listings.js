@@ -9,5 +9,7 @@ const router = express.Router();
 
 // Route to create new listing
 router.post('/', ListingController.createListing);
+// Route to update listing
+router.put('/:id', ListingController.updateListing);
 
 export default router;
