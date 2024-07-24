@@ -11,5 +11,7 @@ const router = express.Router();
 router.post('/', ListingController.createListing);
 // Route to update listing
 router.put('/:id', ListingController.updateListing);
+// Route to delete listing
+router.delete('/:id', ListingController.deleteListing);
 
 export default router;
