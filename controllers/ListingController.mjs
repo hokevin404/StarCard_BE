@@ -10,7 +10,20 @@ const ListingController = {
         } catch (error) {
             res.status(400).json({error: error.message});
         }
-    }
+    },
+
+    // Method to update listing
+    updateListing: async (req, res) => {
+        const {id} = req.params;
+        const {userID, title, price, condition, description} = req.body;
+
+        try {
+            const updatedListing = await Listing.findByIdAndUpdate(id, {userID, title, price, condition, description});
+            res.json(updatedListing);
+        } catch (error) {
+            res.status(400).json({error: error.message})
+        }
+    },
 }
 
 export default ListingController;
