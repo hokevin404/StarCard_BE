@@ -1,7 +1,7 @@
 import mongoose, { Mongoose } from "mongoose";
-import isEmail from 'validator/lib/isEmail';
+import isEmail from 'validator/lib/isEmail.js';
 
-const UserSchema = new Mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     fname: {
         type: String,
         required: true,
@@ -20,11 +20,11 @@ const UserSchema = new Mongoose.Schema({
         minLength: 3,
         maxLength: 20
     },
-    email: {    
+    email: {
         type: String,
         required: true,
         unique: true,
-        validate: [isEmail, 'Invalid email address']
+        validat: [isEmail, 'Invalid email address']
     }
 })
 
