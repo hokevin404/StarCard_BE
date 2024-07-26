@@ -24,11 +24,27 @@ const UserSchema = new mongoose.Schema({
         minLength: 3,
         maxLength: 20
     },
+    password: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
         unique: true,
         validate: [isEmail, 'Invalid email address']
+    },
+    createdAt: { 
+        type: Date, 
+        default: Date.now 
+    },
+    updatedAt: { 
+        type: Date, 
+        default: Date.now 
+    },
+    isActive: { 
+        type: Boolean, 
+        default: true 
     }
 })
 
