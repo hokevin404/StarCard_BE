@@ -1,6 +1,7 @@
 // Import models
 import ListingController from "../controllers/ListingController.mjs";
-
+// import middleware
+import auth from '../middleware/auth.mjs'
 // Import modules
 import express from 'express';
 
@@ -10,10 +11,10 @@ const router = express.Router();
 // Route to get ALL listings
 router.get('/', ListingController.getAllListing);
 // Route to create new listing
-router.post('/', ListingController.createListing);
+router.post('/', auth, ListingController.createListing);
 // Route to update listing
-router.put('/:id', ListingController.updateListing);
+router.put('/:id', auth, ListingController.updateListing);
 // Route to delete listing
-router.delete('/:id', ListingController.deleteListing);
+router.delete('/:id', auth, ListingController.deleteListing);
 
 export default router;

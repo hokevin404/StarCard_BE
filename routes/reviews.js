@@ -1,6 +1,7 @@
 // import models
 import ReviewController from "../controllers/ReviewsController.mjs";
-
+// import middleware
+import auth from "../middleware/auth.mjs";
 // import modules
 import express from 'express';
 
