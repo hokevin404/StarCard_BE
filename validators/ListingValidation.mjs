@@ -16,5 +16,13 @@ export const listingValidation = checkSchema({
             },
             errorMessage: 'Title must be between 5 and 150 characters'
         }
+    },
+    price: {
+        in: ['body'],
+        isNumeric: true,
+        isFloat: {
+            options: {min: 0},
+            errorMessage: 'Price must be a positive number'
+        }
     }
 })
