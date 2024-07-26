@@ -1,6 +1,6 @@
 import { checkSchema } from 'express-validator';
 
-export const userValidationSchema = checkSchema({
+export const userValidation = checkSchema({
     fname: {
         in: ['body'], // specify request location
         isString: true, // check value is string
