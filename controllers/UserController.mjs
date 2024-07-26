@@ -8,7 +8,7 @@ const UserController = {
     // Method to create a new user
     createUser: async (req, res) => {
         // Destructure body of request
-        const {fname, lname, username, email} = req.body;
+        const {fname, lname, username, email, password} = req.body;
 
         // Validation of request
         const errors = validationResult(req);
@@ -19,13 +19,13 @@ const UserController = {
 
         try {
             // Check for existing username
-            let user = await User.find({username});
-            if(user)
+            let userExist = await User.findOne({username});
+            if(userExist)
                 return res.status(400).json({errors: [{msg: 'Username already exist'}]});
 
             // Check for existing email
-            let email = await User.find({email});
-            if(email)
+            let emailExist = await User.findOne({email});
+            if(emailExist)
                 return res.status(400).json({errors: [{msg: 'Email already exist'}]});
 
             // Encrypt user password
@@ -41,8 +41,8 @@ const UserController = {
                 password,
                 email,
                 password: hashedPassword,
-                createdAt: new Date.now(),
-                updatedAt: new Date.now(),
+                createdAt: new Date(),
+                updatedAt: new Date(),
                 isActive: true
             });
 
