@@ -15,11 +15,17 @@ const UserController = {
 
         // Validation of request
         const errors = validationResult(req);
+
         // If errors present, return 400 status
         if(!errors.isEmpty())
             return res.status(400).json({errors: errors.array()});
 
         try {
+            // Check for existing username
+            let user = await User.find({username});
+            if(user)
+                return res.status(400).json({errors: [{msg: 'Username already exist'}]});
+
             // Use mongoose method to create new user
             const newUser = await User.create({userID, fname, lname, username, email});
             // respond with newly created user
