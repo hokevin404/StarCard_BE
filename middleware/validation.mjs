@@ -36,6 +36,13 @@ export const userValidationSchema = checkSchema({
             options: {min: 8},
             errorMessage: 'Password must be at least 8 characters long'
         }
-
+    },
+    email: {
+        in: ['body'],
+        trim: true,
+        normalizeEmail: true, // Standardizes email since emails are case-insensitive
+        isEmail: {
+            errorMessage: 'Invalid email address'
+        }
     }
 })
