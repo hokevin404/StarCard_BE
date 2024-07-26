@@ -10,12 +10,7 @@ const UserController = {
         // Destructure body of request
         const {fname, lname, username, email, password} = req.body;
 
-        // Validation of request
-        const errors = validationResult(req);
 
-        // If errors present, return 400 status
-        if(!errors.isEmpty())
-            return res.status(400).json({errors: errors.array()});
 
         try {
             // Check for existing username

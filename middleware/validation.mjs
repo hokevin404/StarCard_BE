@@ -1,4 +1,4 @@
-import { checkSchema, checkschema, validationResult } from 'express-validator';
+import { checkSchema, validationResult } from 'express-validator';
 
 export const userValidationSchema = checkSchema({
     fname: {
@@ -33,7 +33,7 @@ export const userValidationSchema = checkSchema({
         isString: true,
         trim: true,
         isLength: {
-            options: {min: 8},
+            options: { min: 8 },
             errorMessage: 'Password must be at least 8 characters long'
         }
     },
@@ -45,4 +45,13 @@ export const userValidationSchema = checkSchema({
             errorMessage: 'Invalid email address'
         }
     }
-})
+});
+
+export const handleValidationErrors = (req, res, next) => {
+    // Validation of request
+    const errors = validationResult(req);
+
+    // If errors present, return 400 status
+    if (!errors.isEmpty())
+        return res.status(400).json({ errors: errors.array() });
+}
