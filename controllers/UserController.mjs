@@ -45,6 +45,16 @@ const UserController = {
                 updatedAt: new Date.now(),
                 isActive: true
             });
+
+            // Create JWT payload
+            const payload = {
+                user: {
+                    id: newUser.userID,
+                    fname: newUser.fname,
+                    lname: newUser.lname
+                }
+            };
+
             // respond with newly created user
             res.status(201).json({newUser});
         } catch (error) {
