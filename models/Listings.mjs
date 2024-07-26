@@ -32,8 +32,11 @@ const userListing = new mongoose.Schema({
     updatedAt: {
         type: Date,
         default: Date.now
-    }
- });
+    },
+ },
+ {
+    timestamps: true // Automatically manages Date fields
+});
 
 userListing.index({title: 1})
 
