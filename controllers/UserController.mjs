@@ -1,5 +1,8 @@
 import User from '../models/Users.mjs';
 import { v4 as uuidv4 } from 'uuid';
+import { validationResult } from 'express-validator';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const UserController = {
     // Method to create a new user
@@ -9,6 +12,12 @@ const UserController = {
         
         // Generate unique userID
         const userID = uuidv4();
+
+        // Validation of request
+        const errors = validationResult(req);
+        // If errors present, return 400 status
+        if(!errors.isEmpty())
+            return res.status(400).json({errors: errors.array()});
 
         try {
             // Use mongoose method to create new user
