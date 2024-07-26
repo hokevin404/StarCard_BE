@@ -1,5 +1,5 @@
 import Listing from '../models/Listings.mjs';
-import { listingValidation, ListingValidation } from '../validators/ListingValidation.mjs'
+import { listingValidation } from '../validators/ListingValidation.mjs'
 import { handleValidationErrors } from '../validators/HandleValidationErrors.mjs';
 
 const ListingController = {
@@ -16,7 +16,7 @@ const ListingController = {
     // Method to create new listing
     createListing: [
         // input validation 
-        ListingValidation,
+        listingValidation,
         // handle validation error middleware
         handleValidationErrors,
 

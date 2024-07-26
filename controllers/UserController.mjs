@@ -73,22 +73,27 @@ const UserController = {
         }],
 
     // Method to update a user
-    updateUser: async (req, res) => {
-        // Deconstruct parameter of request
-        const { id } = req.params;
+    updateUser: [
+        userValidation,
+        handleValidationErrors,
 
-        // Deconstruct body of request
-        const { fname, lname, email } = req.body;
+        async (req, res) => {
+            // Deconstruct parameter of request
+            const { id } = req.params;
 
-        try {
-            // Mongoose method to find user by userID and then update data
-            const updatedUser = await User.findByIdAndUpdate(id, { fname, lname, email });
-            // Respond with newly updated user
-            res.json(updatedUser);
-        } catch (error) {
-            res.status(400).json({ error: error.message })
+            // Deconstruct body of request
+            const { fname, lname, email } = req.body;
+
+            try {
+                // Mongoose method to find user by userID and then update data
+                const updatedUser = await User.findByIdAndUpdate(id, { fname, lname, email });
+                // Respond with newly updated user
+                res.json(updatedUser);
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
         }
-    },
+    ],
 
     // Method to delete user
     deleteUser: async (req, res) => {
