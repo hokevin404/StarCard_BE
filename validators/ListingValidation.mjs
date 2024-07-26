@@ -35,5 +35,13 @@ export const listingValidation = checkSchema({
             errorMessage: 'Condition is required'
         }
         
+    },
+    description: {
+        optional: true,
+        trim: true,
+        isLength: {
+            options: { max: 250 },
+            errorMessage: 'Description must be less than 250 characters'
+        }
     }
 })
