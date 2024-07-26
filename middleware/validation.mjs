@@ -16,5 +16,16 @@ export const userValidationSchema = checkSchema({
         notEmpty: {
             errorMessage: 'Last name is required'
         }
+    },
+    username: {
+        in: ['body'],
+        isString: true,
+        trim: true,
+        notEmpty: {
+            errorMessage: "Username requried"
+        },
+        isAlphanumeric: {
+            errorMessage: 'Username must is alphanumeric'
+        }
     }
 })
