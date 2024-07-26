@@ -55,10 +55,21 @@ const UserController = {
                 }
             };
 
-            // respond with newly created user
-            res.status(201).json({newUser});
+            // Sign JWT and return it
+            jwt.sign(
+                payload,
+                process.env.jwtSecret,
+                {expiresIn: '1hr'},
+                (error, token) => {
+                    if(error) {
+                        console.error(error);
+                        return res.status(500).json({errors: [{msg: 'Server error'}]});
+                    }
+                    res.status(201).json({token});
+                }
+            );
         } catch (error) {
-            res.status(400).json({error: error.message});
+            res.status(500).json({error: error.message});
         }
     },
 
