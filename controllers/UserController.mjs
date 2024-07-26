@@ -1,16 +1,19 @@
 import User from '../models/Users.mjs';
 import { v4 as uuidv4 } from 'uuid';
-import { validationResult } from 'express-validator';
+import { userValidationSchema, handleValidationErrors } from '../middleware/validation.mjs';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const UserController = {
     // Method to create a new user
-    createUser: async (req, res) => {
+    createUser: [
+        // validation middleware
+        userValidationSchema,
+        // handle validation error middleware
+        handleValidationErrors,
+        async (req, res) => {
         // Destructure body of request
         const {fname, lname, username, email, password} = req.body;
-
-
 
         try {
             // Check for existing username
@@ -66,7 +69,7 @@ const UserController = {
         } catch (error) {
             res.status(500).json({error: error.message});
         }
-    },
+    }],
 
     // Method to update a user
     updateUser: async (req, res) => {
