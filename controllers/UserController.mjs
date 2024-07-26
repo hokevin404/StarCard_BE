@@ -6,6 +6,19 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const UserController = {
+    // Method to get a user
+    getUser: async (req, res) => {
+        try {
+            // Initialize user with user info from database, excluding password
+            const user = await User.findById(req.user.id).select('-password');
+
+            res.json(user);
+        } catch (error) {
+            console.error(error);
+            res.status(400).json({error: [{msg: 'Server Error'}]});
+        }
+    },
+
     // Method to create a new user
     createUser: [
         // input validation
