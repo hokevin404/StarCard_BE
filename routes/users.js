@@ -14,7 +14,7 @@ router.post('/register', UserController.createUser);
 router.post('/login', UserController.loginUser);
 
 // Route to GET user
-router.get('/', auth, UserController.getUser);
+router.get('/:id', auth, UserController.getUser);
 // Route to UPDATE user
 router.put('/:id', auth, UserController.updateUser);
 // Route to DELETE user

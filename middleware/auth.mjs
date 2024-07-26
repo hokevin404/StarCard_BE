@@ -11,7 +11,7 @@ export default (req, res, next) => {
 
     try {
         // Initialize variable with JWT token validity
-        const decoded = jwt.verify(token, process.env.tokenSecret);
+        const decoded = jwt.verify(token, process.env.jwtSecret);
 
         // Initialize variable with user from token
         req.user = decoded.user;

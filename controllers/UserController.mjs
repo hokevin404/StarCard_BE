@@ -1,6 +1,7 @@
 import User from '../models/Users.mjs';
 import { v4 as uuidv4 } from 'uuid';
 import { userValidation } from '../validators/UserValidation.mjs';
+import { loginValidation } from '../validators/LoginValidation.mjs';
 import { handleValidationErrors } from '../validators/HandleValidationErrors.mjs';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -10,7 +11,7 @@ const UserController = {
     getUser: async (req, res) => {
         try {
             // Initialize user with user info from database, excluding password
-            const user = await User.findById(req.user.id).select('-password');
+            const user = await User.findById(req.params.id).select('-password');
 
             res.json(user);
         } catch (error) {
@@ -50,9 +51,8 @@ const UserController = {
                     fname,
                     lname,
                     username,
-                    password,
-                    email,
                     password: hashedPassword,
+                    email,
                     createdAt: new Date(),
                     updatedAt: new Date(),
                     isActive: true
@@ -87,7 +87,7 @@ const UserController = {
 
     //Method to login a user
     loginUser: [
-        userValidation,
+        loginValidation,
         handleValidationErrors,
         async (req, res) => {
             // Destructure body of request
@@ -95,7 +95,7 @@ const UserController = {
 
             try {
                 // Find user by username in database
-                let user = await User.findOne(username);
+                let user = await User.findOne({username});
 
                 // if not found, return error
                 if(!user)
