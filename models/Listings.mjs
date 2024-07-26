@@ -18,7 +18,16 @@ const userListing = new mongoose.Schema({
     },
     condition: {
         type: String,
-        required: true
+        required: true,
+        enum: [
+            'New',
+            'Like New',
+            'Very Good',
+            'Good',
+            'Not Good',
+            'Damaged'
+        ],
+        message: '{VALUE} is not a valid condition'
     },
     description: {
         type: String,

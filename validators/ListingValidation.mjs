@@ -24,5 +24,16 @@ export const listingValidation = checkSchema({
             options: {min: 0},
             errorMessage: 'Price must be a positive number'
         }
+    },
+    condition: {
+        in: ['body'],
+        isIn: {
+            options: [['New', 'Like New','Very Good','Good','Not Good', "Damaged"]],
+            errorMessage: 'Condition must be one of the following: New, Like New, Very Good, Good, Not Good, or Damaged'
+        },
+        notEmpty: {
+            errorMessage: 'Condition is required'
+        }
+        
     }
 })
