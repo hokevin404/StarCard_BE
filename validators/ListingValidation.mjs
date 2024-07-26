@@ -15,6 +15,9 @@ export const listingValidation = checkSchema({
                 max: 150
             },
             errorMessage: 'Title must be between 5 and 150 characters'
+        },
+        notEmpty: {
+            errorMessage: 'Title is required'
         }
     },
     price: {
@@ -23,7 +26,8 @@ export const listingValidation = checkSchema({
         isFloat: {
             options: {min: 0},
             errorMessage: 'Price must be a positive number'
-        }
+        },
+        notEmpty: 'Price is required'
     },
     condition: {
         in: ['body'],
@@ -44,4 +48,4 @@ export const listingValidation = checkSchema({
             errorMessage: 'Description must be less than 250 characters'
         }
     }
-})
+});
