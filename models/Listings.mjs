@@ -14,7 +14,7 @@ const userListing = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-        minLength: 3
+        min: 0
     },
     condition: {
         type: String,
@@ -23,7 +23,15 @@ const userListing = new mongoose.Schema({
     description: {
         type: String,
         required: false,
-        maxLength: 250, 
+        maxLength: 250
+    },
+    createAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
     }
  });
 
