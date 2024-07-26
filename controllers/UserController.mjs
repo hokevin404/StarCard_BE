@@ -26,6 +26,11 @@ const UserController = {
             if(user)
                 return res.status(400).json({errors: [{msg: 'Username already exist'}]});
 
+            // Check for existing email
+            let email = await User.find({email});
+            if(email)
+                return res.status(400).json({errors: [{msg: 'Email already exist'}]});
+
             // Use mongoose method to create new user
             const newUser = await User.create({userID, fname, lname, username, email});
             // respond with newly created user
