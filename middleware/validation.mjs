@@ -27,5 +27,15 @@ export const userValidationSchema = checkSchema({
         isAlphanumeric: {
             errorMessage: 'Username must is alphanumeric'
         }
+    },
+    password: {
+        in: ['body'],
+        isString: true,
+        trim: true,
+        isLength: {
+            options: {min: 8},
+            errorMessage: 'Password must be at least 8 characters long'
+        }
+
     }
 })
