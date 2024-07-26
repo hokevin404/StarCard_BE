@@ -1,6 +1,7 @@
 import User from '../models/Users.mjs';
 import { v4 as uuidv4 } from 'uuid';
-import { userValidationSchema, handleValidationErrors } from '../middleware/validation.mjs';
+import { userValidationSchema } from '../validators/UserValidationSchema.mjs';
+import { handleValidationErrors } from '../validators/HandleValidationErrors.mjs';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
