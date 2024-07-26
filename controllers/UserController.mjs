@@ -85,6 +85,57 @@ const UserController = {
             }
         }],
 
+    //Method to login a user
+    loginUser: [
+        userValidation,
+        handleValidationErrors,
+        async (req, res) => {
+            // Destructure body of request
+            const {username, password} = req.body;
+
+            try {
+                // Find user by username in database
+                let user = await User.findOne(username);
+
+                // if not found, return error
+                if(!user)
+                    return res.status(400).json({errors: [{msg: 'Invalid Credentials'}]});
+
+                // Check if password matches
+                const isMatch = await bcrypt.compare(password, user.password);
+
+                // If password not match, return error
+                if(!isMatch)
+                    return res.status(400).json({errors: [{msg: 'Invalid Credentials'}]});
+
+                // Create JWT payload
+                const payload = {
+                    user: {
+                        id: user.userID
+                    }
+                };
+
+                // Sign JWT and return
+                jwt.sign(
+                    payload,
+                    process.env.jwtSecret,
+                    {expiresIn: '1hr'},
+                    (err, token) => {
+                        if(err) {
+                            console.error(error);
+                            return res.status(500).json({ errors: [{ msg: 'Server error' }] });
+                        }
+
+                        res.status(201).json({ token });
+                    }
+                ) 
+            } catch (error) {
+                console.error({error});
+                res.status(500).json({errors: [{msg: 'Server Error'}]});
+            }
+        }
+    ],
+
     // Method to update a user
     updateUser: [
         userValidation,

@@ -9,7 +9,12 @@ import express from 'express';
 const router = express.Router();
 
 // Route to CREATE new user
-router.post('/', UserController.createUser);
+router.post('/register', UserController.createUser);
+// Route to Login
+router.post('/login', UserController.loginUser);
+
+// Route to GET user
+router.get('/', auth, UserController.getUser);
 // Route to UPDATE user
 router.put('/:id', auth, UserController.updateUser);
 // Route to DELETE user
