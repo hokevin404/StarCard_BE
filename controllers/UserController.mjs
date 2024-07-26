@@ -9,9 +9,6 @@ const UserController = {
     createUser: async (req, res) => {
         // Destructure body of request
         const {fname, lname, username, email} = req.body;
-        
-        // Generate unique userID
-        const userID = uuidv4();
 
         // Validation of request
         const errors = validationResult(req);
@@ -31,8 +28,23 @@ const UserController = {
             if(email)
                 return res.status(400).json({errors: [{msg: 'Email already exist'}]});
 
+            // Encrypt user password
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
+            
             // Use mongoose method to create new user
-            const newUser = await User.create({userID, fname, lname, username, email});
+            const newUser = await User.create({
+                userID: uuidv4(), 
+                fname, 
+                lname, 
+                username,
+                password,
+                email,
+                password: hashedPassword,
+                createdAt: new Date.now(),
+                updatedAt: new Date.now(),
+                isActive: true
+            });
             // respond with newly created user
             res.status(201).json({newUser});
         } catch (error) {
