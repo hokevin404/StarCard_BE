@@ -9,4 +9,12 @@ export const userValidationSchema = checkSchema({
             errorMessage: 'First name is required'
         }
     },
+    lname: {
+        in: ['body'],
+        isString: true,
+        trim: true,
+        notEmpty: {
+            errorMessage: 'Last name is required'
+        }
+    }
 })
