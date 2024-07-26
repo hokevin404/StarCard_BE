@@ -10,10 +10,14 @@ const db = process.env.mongoURI;
 
 // Function to connect to database
 export async function connectDB() {
+    // Establish connection with database
     mongoose.connect(db);
 
     const conn = mongoose.connection;
+    // Listens for connection errors
     conn.on('error', (e) => console.log(e));
+    // Listens for successful connection
     conn.once('open', () => console.log(`Connected to MongoDB!`));
-    conn.off('close', () => console.log(`Disconnected from MongoDB!`));
+    // Listens for disconnection errors
+    conn.on('disconnected', () => console.log(`Disconnected from MongoDB!`));
 };
