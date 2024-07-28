@@ -7,6 +7,7 @@ import reviewRoutes from './routes/reviews.js';
 import { connectDB } from './config/conn.mjs';;
 import dotenv from 'dotenv';
 import express from 'express';
+import cors from 'cors';
 
 // Invoked to load .env variables to process.env object
 dotenv.config();
@@ -20,6 +21,9 @@ const app = express();
 // Initialize PORT to imported PORT number, otherwise 3001
 const PORT = process.env.PORT || 3001;
 
+// Mount cross-origin resource sharing (cors)
+app.use(cors());
+// Mount Expresss middleware parser
 app.use(express.json());
 // Mount user route
 app.use('/api/users', userRoutes);
