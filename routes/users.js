@@ -9,7 +9,7 @@ import express from 'express';
 const router = express.Router();
 
 // Route to CREATE new user
-router.post('/register', UserController.createUser);
+router.post('/signup', UserController.createUser);
 // Route to Login
 router.post('/login', UserController.loginUser);
 
