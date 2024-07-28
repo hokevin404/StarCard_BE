@@ -111,7 +111,9 @@ const UserController = {
                 // Create JWT payload
                 const payload = {
                     user: {
-                        id: user.userID
+                        id: user._id,
+                        username: user.username,
+                        bio: user.bio
                     }
                 };
 
