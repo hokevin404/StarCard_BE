@@ -148,11 +148,11 @@ const UserController = {
             const { id } = req.params;
 
             // Deconstruct body of request
-            const { fname, lname, email } = req.body;
+            const { fname, lname, email, bio } = req.body;
 
             try {
                 // Mongoose method to find user by userID and then update data
-                const updatedUser = await User.findByIdAndUpdate(id, { fname, lname, email });
+                const updatedUser = await User.findByIdAndUpdate(id, { fname, lname, email, bio });
                 // Respond with newly updated user
                 res.json(updatedUser);
             } catch (error) {
