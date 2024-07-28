@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         validate: [isEmail, 'Invalid email address']
     },
+    bio: {
+        type: String,
+        maxLength: 250,
+    },
     createdAt: { 
         type: Date, 
         default: Date.now 
