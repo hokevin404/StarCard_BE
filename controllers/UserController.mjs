@@ -122,8 +122,8 @@ const UserController = {
                     payload,
                     process.env.jwtSecret,
                     {expiresIn: '1hr'},
-                    (err, token) => {
-                        if(err) {
+                    (error, token) => {
+                        if(error) {
                             console.error(error);
                             return res.status(500).json({ errors: [{ msg: 'Server error' }] });
                         }
