@@ -8,8 +8,14 @@ import express from 'express';
 // Initialize router as express Router()
 const router = express.Router();
 
+// Route to seed database
+// router.post('/seed', ListingController.seedDB);
+
 // Route to get ALL listings
 router.get('/', ListingController.getAllListing);
+
+// Route to get ALL listings from a user
+router.get('/:id', ListingController.getUserListing)
 // Route to create new listing
 router.post('/', auth, ListingController.createListing);
 // Route to update listing

@@ -5,6 +5,10 @@ const userListing = new mongoose.Schema({
         type: String,
         required: true,
     },
+    imgURL: {
+        type: String,
+        required: false,
+    },
     title: {
         type: String,
         required: true,
