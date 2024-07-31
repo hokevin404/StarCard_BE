@@ -13,8 +13,8 @@ const router = express.Router();
 
 // Route to get ALL listings
 router.get('/', ListingController.getAllListing);
-
 // Route to get ALL listings from a user
+
 router.get('/:id', ListingController.getUserListing)
 // Route to create new listing
 router.post('/', auth, ListingController.createListing);

@@ -140,7 +140,6 @@ const UserController = {
 
     // Method to update a user
     updateUser: [
-        userValidation,
         handleValidationErrors,
 
         async (req, res) => {
@@ -152,7 +151,7 @@ const UserController = {
 
             try {
                 // Mongoose method to find user by userID and then update data
-                const updatedUser = await User.findByIdAndUpdate(id, { fname, lname, email, bio });
+                const updatedUser = await User.findByIdAndUpdate(id, { fname, lname, email, bio }, {new: true});
                 // Respond with newly updated user
                 res.json(updatedUser);
             } catch (error) {
